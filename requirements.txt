@@ -1,0 +1,19 @@
+# Full dependency set: the offline training core (src/) AND the backend API.
+# The backend alone can install the smaller backend/requirements.txt instead.
+
+# --- ML core (training + inference + explainability) ---
+pandas
+scikit-learn
+xgboost
+shap
+matplotlib
+joblib
+
+# --- Backend API (FastAPI inference service) ---
+fastapi
+uvicorn[standard]
+python-multipart
+
+# --- LLM insight layer (Gemini) ---
+google-genai
+python-dotenv

@@ -1,0 +1,14 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+
+# Node / frontend build
+frontend/node_modules/
+frontend/dist/
+
+# Secrets — never commit real API keys
+.env
+*.env
+!*.env.example
+backend/.env
