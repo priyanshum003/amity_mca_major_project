@@ -1,0 +1,5 @@
+Model,Precision,Recall,F1,ROC-AUC,PR-AUC
+Rule-based baseline,0.428,0.88,0.576,0.814,0.547
+Logistic Regression,0.504,0.783,0.614,0.842,0.633
+Random Forest,0.547,0.634,0.587,0.823,0.605
+XGBoost,0.524,0.703,0.6,0.822,0.629

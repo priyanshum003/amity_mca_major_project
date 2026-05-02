@@ -1,0 +1,17 @@
+{
+  "best_model": "Logistic Regression",
+  "churn_rate": 0.2654,
+  "n_customers": 7043,
+  "top_drivers": {
+    "cat__Contract_Month-to-month": 0.8600999712944031,
+    "num__tenure": 0.7275999784469604,
+    "num__MonthlyCharges": 0.47850000858306885,
+    "num__TotalCharges": 0.3443000018596649,
+    "cat__OnlineSecurity_No": 0.2842000126838684,
+    "cat__TechSupport_No": 0.2037000060081482,
+    "cat__PaymentMethod_Electronic check": 0.1776999980211258,
+    "cat__InternetService_Fiber optic": 0.17759999632835388,
+    "cat__MultipleLines_No": 0.1509000062942505,
+    "cat__PaperlessBilling_No": 0.14800000190734863
+  }
+}
