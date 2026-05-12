@@ -1,0 +1,15 @@
+# Backend (inference-only) dependencies.
+# The heavy training libs (matplotlib) live in the project's top-level
+# requirements.txt; the API only needs what it uses to load the model,
+# transform input, score, and explain.
+fastapi
+uvicorn[standard]
+python-multipart
+pandas
+scikit-learn
+xgboost
+shap
+joblib
+# LLM insight layer (Gemini). python-dotenv loads backend/.env locally.
+google-genai
+python-dotenv
