@@ -1,0 +1,24 @@
+# docker-compose for local development.
+#
+#   docker compose up --build
+#
+# Brings up the backend API on http://localhost:8000. The frontend is run
+# separately with `npm run dev` (see frontend/README), which proxies /api to
+# this backend. We keep the frontend out of compose so the dev server's
+# hot-reload stays fast — compose here is just the inference API.
+services:
+  api:
+    build:
+      context: .                  # project root, so outputs/ and data/ are available
+      dockerfile: backend/Dockerfile
+    image: churn-api
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+    # Health check mirrors the /health endpoint the app exposes.
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
