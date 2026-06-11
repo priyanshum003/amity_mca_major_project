@@ -1,0 +1,44 @@
+# render.yaml — Render Blueprint for deploying this project for free.
+#
+# It defines TWO services:
+#   1) churn-api      — the FastAPI backend, built from backend/Dockerfile.
+#   2) churn-frontend — the React app, built with Vite and served as a static site.
+#
+# How to deploy:
+#   1. Push this repo to GitHub.
+#   2. In the Render dashboard: New > Blueprint, point it at the repo.
+#   3. Render reads this file and creates both services. They are PUBLIC by
+#      default (no auth), so your examiner can open the frontend URL directly.
+#   4. After the first deploy, copy the backend URL and confirm it is set as
+#      VITE_API_URL on the frontend service (it is wired below automatically).
+services:
+  # ---------------- Backend: FastAPI inference API ----------------
+  - type: web
+    name: churn-api
+    runtime: docker
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: .            # project root so outputs/ and data/ are copied in
+    plan: free
+    healthCheckPath: /health
+    autoDeploy: true
+
+  # ---------------- Frontend: React static site -------------------
+  - type: web
+    name: churn-frontend
+    runtime: static
+    plan: free
+    buildCommand: cd frontend && npm install && npm run build
+    staticPublishPath: ./frontend/dist
+    autoDeploy: true
+    # Inject the backend URL at build time so the app calls the live API.
+    envVars:
+      - key: VITE_API_URL
+        fromService:
+          name: churn-api
+          type: web
+          property: host          # backend hostname; api.js prepends https://
+    # SPA fallback: serve index.html for any client-side route.
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html
