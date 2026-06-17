@@ -2,7 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* A neutral, report-friendly base. Everything else is Tailwind utilities. */
+/* Neutral page base. Everything else is Tailwind utilities. */
 body {
   @apply bg-slate-50 text-slate-800 antialiased;
 }

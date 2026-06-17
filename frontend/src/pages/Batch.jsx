@@ -34,10 +34,9 @@ export default function Batch() {
     <div className="space-y-6">
       <Card title="Upload a customer CSV">
         <p className="mb-4 text-sm text-slate-500">
-          Upload a CSV with the Telco customer columns (the same format as
-          <code> data/telco_churn.csv</code>). Missing columns are filled with
-          sensible defaults. Each row gets a churn probability, risk level and its
-          top contributing factor.
+          Upload a CSV using the standard Telco customer columns. Any missing
+          columns are filled with sensible defaults. Each row gets a churn
+          probability, a risk level, and its top contributing factor.
         </p>
         <div className="flex flex-wrap items-center gap-3">
           <input
