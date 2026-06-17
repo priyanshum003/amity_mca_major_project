@@ -31,13 +31,13 @@ services:
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: ./frontend/dist
     autoDeploy: true
-    # Inject the backend URL at build time so the app calls the live API.
+    # Backend URL baked in at build time so the app calls the live API.
+    # NOTE: `fromService property: host` returns the bare service name
+    # (e.g. "churn-api-c8da") without ".onrender.com", which fails DNS.
+    # So we set the full https URL explicitly.
     envVars:
       - key: VITE_API_URL
-        fromService:
-          name: churn-api
-          type: web
-          property: host          # backend hostname; api.js prepends https://
+        value: https://churn-api-c8da.onrender.com
     # SPA fallback: serve index.html for any client-side route.
     routes:
       - type: rewrite
