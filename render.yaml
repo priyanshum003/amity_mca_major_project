@@ -26,7 +26,8 @@ services:
   - type: web
     name: churn-frontend
     runtime: static
-    plan: free
+    # NOTE: static sites are always free on Render and must NOT declare a plan;
+    # a `plan:` key here makes the Blueprint invalid ("no such plan free").
     buildCommand: cd frontend && npm install && npm run build
     staticPublishPath: ./frontend/dist
     autoDeploy: true
