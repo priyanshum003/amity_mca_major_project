@@ -17,17 +17,27 @@ export default function App() {
   const ActivePage = TABS.find((t) => t.id === active).component;
 
   return (
-    <div className="min-h-screen">
+    <div className="flex min-h-screen flex-col">
       {/* Header + tab navigation */}
       <header className="border-b border-slate-200 bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-4">
-          <h1 className="text-xl font-bold text-slate-900">
-            Churn Retention Dashboard
-          </h1>
-          <p className="text-sm text-slate-500">
-            Explainable ML for retention marketing — Telco customer churn
+        <div className="mx-auto flex max-w-6xl items-start justify-between gap-4 px-6 py-4">
+          <div>
+            <h1 className="text-xl font-bold text-slate-900">
+              Churn Retention Dashboard
+            </h1>
+            <p className="text-sm text-slate-500">
+              Explainable ML for retention marketing — Telco customer churn
+            </p>
+          </div>
+          <p className="hidden whitespace-nowrap text-xs text-slate-400 sm:block">
+            Created by{" "}
+            <span className="font-medium text-slate-600">
+              Priyanshu Kumar Mishra
+            </span>
           </p>
-          <nav className="mt-4 flex gap-2">
+        </div>
+        <div className="mx-auto max-w-6xl px-6 pb-4">
+          <nav className="flex gap-2">
             {TABS.map((tab) => (
               <button
                 key={tab.id}
@@ -45,9 +55,22 @@ export default function App() {
         </div>
       </header>
 
-      <main className="mx-auto max-w-6xl px-6 py-8">
+      <main className="mx-auto w-full max-w-6xl px-6 py-8">
         <ActivePage />
       </main>
+
+      {/* Watermark / author credit */}
+      <footer className="mt-auto border-t border-slate-200 bg-white">
+        <div className="mx-auto flex max-w-6xl flex-col items-center gap-1 px-6 py-5 text-center">
+          <p className="text-sm font-medium text-slate-700">
+            Created by Priyanshu Kumar Mishra
+          </p>
+          <p className="text-xs text-slate-400">
+            MCA Major Project · Retention Marketing Using Explainable Machine
+            Learning for Churn Prediction
+          </p>
+        </div>
+      </footer>
     </div>
   );
 }
